@@ -16,7 +16,11 @@ public class SearchCoachIntoSkillsUpSiteTest extends BasePage{
     @Test
     public void testFindCoachJava()throws Exception{
         findCoach = "http://skillsup.ua/media/22116/Alexander-Galkovskiy_P.jpg";
-        webElement = driver.findElement(By.cssSelector("img[src*='Galkovskiy']"));
+        //The line below is right too.
+        //webElement = driver.findElement(By.cssSelector("img[src*='Galkovskiy']"));
+        //The line below created with WebDriver Element Locator
+        webElement = driver.findElement(By.xpath("//img[@src='/media/22116/Alexander-Galkovskiy_P.jpg']"));
+
 
        assertEquals(findCoach, webElement.getAttribute("src").toString());
     }
@@ -27,13 +31,17 @@ public class SearchCoachIntoSkillsUpSiteTest extends BasePage{
 
        assertEquals(findCoach, webElement.getAttribute("src").toString());
     }
-    @Test(expected = NoSuchElementException.class)
-    public void testFindCoachQAAutomation()throws NoSuchElementException{
-        findCoach = "http://skillsup.ua/media/22166/Artem-Karpov_P.jpg";
-        webElement = driver.findElement(By.cssSelector("img[src*='Karpov']"));
 
-       assertEquals(findCoach, webElement.getAttribute("src").toString());
+    @Test(expected = NoSuchElementException.class)
+    public void testFindCoachQAAutomation()throws NoSuchElementException {
+
+        try {
+            webElement = driver.findElement(By.cssSelector("img[src*='Karpov']"));
+        } catch (NoSuchElementException e) {
+            System.out.println("I catch NoSuchElementException, it's all right");
+        }
     }
+
 
 
 }

@@ -1,46 +1,31 @@
 package qa.skillsup.searchcoach;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import qa.skillsup.pages.FindCoachesPage;
 
-public class SearchCoachStartMainPage extends BasePage {
+public class SearchCoachStartMainPage extends BaseTest {
 
-    private String findCoach;
-    private WebElement webElement;
-    private By clickOurTeam = By.linkText("Наша команда");
-    private By searchCoachJava = By.xpath("//img[@src='/media/22116/Alexander-Galkovskiy_P.jpg']");
-    private By searchAdmin = By.cssSelector("img[src*='Chokan']");
-    private By searchCoachQAAutomation = By.cssSelector("img[src*='Karpov']");
-
-
+    private FindCoachesPage findAllCoaches;
 
     @Test
     public void testFindCoachJava()throws Exception{
-        driver.findElement(clickOurTeam).click();
-        findCoach = "http://skillsup.ua/media/22116/Alexander-Galkovskiy_P.jpg";
-        webElement = driver.findElement(searchCoachJava);
-
-        assertEquals(findCoach, webElement.getAttribute("src").toString());
+        findAllCoaches = new FindCoachesPage(driver);
+        findAllCoaches.jumpToOurTeamPage();
+        assertTrue(findAllCoaches.checkCoachIsPresentedOnPage("Александр Галковский"));
     }
     @Test
     public void testFindAdmin()throws Exception{
-        driver.findElement(clickOurTeam).click();
-        findCoach = "http://skillsup.ua/media/22166/Michael-Chokan_P.jpg";
-        webElement = driver.findElement(searchAdmin);
-
-        assertEquals(findCoach, webElement.getAttribute("src").toString());
+        findAllCoaches = new FindCoachesPage(driver);
+        findAllCoaches.jumpToOurTeamPage();
+        assertTrue(findAllCoaches.checkCoachIsPresentedOnPage("Михаил Чокан"));
+    }
+    @Test
+    public void testFindCoachQaAutomation()throws Exception{
+        findAllCoaches = new FindCoachesPage(driver);
+        findAllCoaches.jumpToOurTeamPage();
+        assertFalse(findAllCoaches.checkCoachIsPresentedOnPage("Артем Карпов"));
     }
 
-    @Test(expected = NoSuchElementException.class)
-    public void testFindCoachQAAutomation()throws NoSuchElementException {
 
-        try {
-            driver.findElement(clickOurTeam).click();
-            webElement = driver.findElement(searchCoachQAAutomation);
-        } catch (NoSuchElementException e) {
-            System.out.println("I catch NoSuchElementException, it's all right");
-        }
-    }
+
 }

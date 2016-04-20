@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FindCoachesPage {
-    private WebElement webElement;
     private By searchAllCoaches = By.className("name");
     private By clickOurTeam = By.linkText("Наша команда");
     private WebDriver driver;

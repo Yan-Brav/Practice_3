@@ -35,11 +35,8 @@ public class FindCoachesPage {
             if (webElement.getText().contains(name)){
                 webElement.click();
                 break;
-            }/*else {
-                System.out.println("Element wasn't found");
-            }*/
+            }
         }
-       // return driver.findElement(searchByClass).getText().contains(name);
     }
 
     public Boolean checkPersonalPage(String person){

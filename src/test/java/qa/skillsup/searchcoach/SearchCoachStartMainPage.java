@@ -45,7 +45,7 @@ public class SearchCoachStartMainPage extends BaseTest {
         findAllCoaches = new FindCoachesPage(driver);
         findAllCoaches.jumpToOurTeamPage();
         findAllCoaches.jumpToPersonalPage(nameForFind);
-        assertTrue(findAllCoaches.checkPersonalPage(nameForFind));;
+        assertFalse(findAllCoaches.checkPersonalPage(nameForFind));
     }
 
 

@@ -13,8 +13,10 @@ public class FindCoachesPage {
     private By clickOurTeam = By.linkText("Наша команда");
     private WebDriver driver;
     private String baseUrl = "http://skillsup.ua";
+    private String person;
 
     private By searchByClass = By.xpath("//div[@class='greenHeader']");
+    private By searchByClassText = By.xpath("//div[@class='text']/p[1]");
 
 
     public FindCoachesPage(WebDriver driver) {
@@ -27,23 +29,28 @@ public class FindCoachesPage {
         driver.findElement(clickOurTeam).click();
     }
 
-    public void findOnCoachPersonalPage(String name){
+    public void jumpToPersonalPage(String name){
         List<WebElement> webElements = driver.findElements(searchAllCoaches);
         for (WebElement webElement : webElements){
             if (webElement.getText().contains(name)){
                 webElement.click();
                 break;
-            }else {
+            }/*else {
                 System.out.println("Element wasn't found");
-            }
+            }*/
         }
        // return driver.findElement(searchByClass).getText().contains(name);
     }
 
     public Boolean checkPersonalPage(String person){
-        findOnCoachPersonalPage(person);
+        jumpToPersonalPage(person);
         System.out.println(driver.findElement(searchByClass).getText());
         return driver.findElement(searchByClass).getText().contains(person);
+    }
+    public Boolean checkPersonalPageByProfession(String profession){
+        jumpToPersonalPage(person);
+        System.out.println(driver.findElement(searchByClassText).getText());
+        return driver.findElement(searchByClassText).getText().contains(profession);
     }
 
     public Boolean checkCoachIsPresentedOnPage(String person){

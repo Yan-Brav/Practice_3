@@ -29,14 +29,22 @@ public class SearchCoachStartMainPage extends BaseTest {
         String nameForFind = "Михаил Чокан";
         findAllCoaches = new FindCoachesPage(driver);
         findAllCoaches.jumpToOurTeamPage();
-        findAllCoaches.findOnCoachPersonalPage(nameForFind);
+        findAllCoaches.jumpToPersonalPage(nameForFind);
         assertTrue(findAllCoaches.checkPersonalPage(nameForFind));
+    }
+    public void testCheckByProfession(){
+        String nameForFind = "Алексей Педоренко";
+        String professionForFind = "Diving into Java";
+        findAllCoaches = new FindCoachesPage(driver);
+        findAllCoaches.jumpToOurTeamPage();
+        findAllCoaches.jumpToPersonalPage(nameForFind);
+        assertTrue(findAllCoaches.checkPersonalPageByProfession(professionForFind));
     }
     public void testCheckByNameNegative(){
         String nameForFind = "Артем Карпов";
         findAllCoaches = new FindCoachesPage(driver);
         findAllCoaches.jumpToOurTeamPage();
-        findAllCoaches.findOnCoachPersonalPage(nameForFind);
+        findAllCoaches.jumpToPersonalPage(nameForFind);
         assertTrue(findAllCoaches.checkPersonalPage(nameForFind));;
     }
 

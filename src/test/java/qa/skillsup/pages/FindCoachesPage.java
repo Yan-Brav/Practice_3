@@ -27,20 +27,23 @@ public class FindCoachesPage {
         driver.findElement(clickOurTeam).click();
     }
 
-    public Boolean findOnCoachPersonalPage(String name){
+    public void findOnCoachPersonalPage(String name){
         List<WebElement> webElements = driver.findElements(searchAllCoaches);
         for (WebElement webElement : webElements){
             if (webElement.getText().contains(name)){
                 webElement.click();
+            }else {
+                System.out.println("Element wasn't found");
             }
         }
-        return driver.findElement(searchByClass).getText().contains(name);
+       // return driver.findElement(searchByClass).getText().contains(name);
     }
 
-    /*public Boolean checkPersonalPage(String person){
+    public Boolean checkPersonalPage(String person){
         findOnCoachPersonalPage(person);
+        System.out.println(driver.findElement(searchByClass).getText());
         return driver.findElement(searchByClass).getText().contains(person);
-    }*/
+    }
 
     public Boolean checkCoachIsPresentedOnPage(String person){
         return searchElementsWithCoachName().contains(person);

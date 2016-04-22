@@ -32,6 +32,7 @@ public class FindCoachesPage {
         for (WebElement webElement : webElements){
             if (webElement.getText().contains(name)){
                 webElement.click();
+                break;
             }else {
                 System.out.println("Element wasn't found");
             }

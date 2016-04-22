@@ -26,7 +26,7 @@ public class SearchCoachStartMainPage extends BaseTest {
     }
 
     public void testCheckByName(){
-        String nameForFind = "Ева Корнеплянская";
+        String nameForFind = "Михаил Чокан";
         findAllCoaches = new FindCoachesPage(driver);
         findAllCoaches.jumpToOurTeamPage();
         findAllCoaches.findOnCoachPersonalPage(nameForFind);

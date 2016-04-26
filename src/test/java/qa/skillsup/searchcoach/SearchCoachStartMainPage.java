@@ -1,10 +1,13 @@
 package qa.skillsup.searchcoach;
 
 import qa.skillsup.pages.FindCoachesPage;
+import qa.skillsup.pages.PersonalDatePage;
 
 public class SearchCoachStartMainPage extends BaseTest {
 
     private FindCoachesPage findAllCoaches;
+    private PersonalDatePage personalDatePage;
+
 
 
     public void testFindCoachJava()throws Exception{
@@ -29,25 +32,27 @@ public class SearchCoachStartMainPage extends BaseTest {
         String nameForFind = "Михаил Чокан";
         findAllCoaches = new FindCoachesPage(driver);
         findAllCoaches.jumpToOurTeamPage();
-        findAllCoaches.jumpToPersonalPage(nameForFind);
-        assertTrue(findAllCoaches.checkPersonalPage(nameForFind));
+        personalDatePage = new PersonalDatePage(driver);
+        personalDatePage.jumpToPersonalPage(nameForFind);
+        assertTrue(personalDatePage.checkPersonalPage(nameForFind));
     }
     public void testCheckByProfession(){
         String nameForFind = "Алексей Педоренко";
         String professionForFind = "Diving into Java";
         findAllCoaches = new FindCoachesPage(driver);
         findAllCoaches.jumpToOurTeamPage();
-        findAllCoaches.jumpToPersonalPage(nameForFind);
-        assertTrue(findAllCoaches.checkPersonalPageByProfession(professionForFind));
+        personalDatePage = new PersonalDatePage(driver);
+        personalDatePage.jumpToPersonalPage(nameForFind);
+        assertTrue(personalDatePage.checkPersonalPageByProfession(professionForFind));
     }
     public void testCheckByNameNegative(){
         String nameForFind = "Артем Карпов";
         findAllCoaches = new FindCoachesPage(driver);
         findAllCoaches.jumpToOurTeamPage();
-        findAllCoaches.jumpToPersonalPage(nameForFind);
-        assertFalse(findAllCoaches.checkPersonalPage(nameForFind));
+        personalDatePage = new PersonalDatePage(driver);
+        personalDatePage.jumpToPersonalPage(nameForFind);
+        assertFalse(personalDatePage.checkPersonalPage(nameForFind));
     }
-
 
 
 }
